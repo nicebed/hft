@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { CurrencyPair, KuEnvKeys, KuHttp, KuReq } from "@project/types/ku";
+import { CurrencyPair, KuEnvKeys, KuHttp, KuReq } from "@hft/types/ku";
 import { request } from 'undici';
 import { SignGenerator } from "./sign-generator";
 
