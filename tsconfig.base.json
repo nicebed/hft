@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@hft/types/ku": ["libs/types/ku/src/index.ts"]
+      "@hft/types/ku": ["libs/types/ku/src/index.ts"],
+      "@hft/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
