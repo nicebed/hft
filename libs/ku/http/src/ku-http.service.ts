@@ -3,6 +3,7 @@ import { ConfigService } from "@nestjs/config";
 import { CurrencyPair, KuEnvKeys, KuHttp, KuReq } from "@hft/types/ku";
 import { request } from 'undici';
 import { SignGenerator } from "./sign-generator";
+import { join } from "path";
 
 type _Keys = Record<KuEnvKeys, string>;
 
