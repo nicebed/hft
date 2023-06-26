@@ -47,6 +47,7 @@ describe('ku-ws | mvp | 000', () => {
         topic_second_splitted_by_comma_part: ['BTC-USDT'],
         privateChannel: false,
         id: Date.now().toString(),
+        type: 'subscribe',
       });
 
       expect(level2).toBeInstanceOf(Level2_subscription_manager);
