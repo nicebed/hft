@@ -1,4 +1,4 @@
-import { Endpoint, KuEnvKeys, KuReq } from '@hft/types/ku';
+import { KuEnvKeys, KuReq } from '@hft/types/ku';
 import { qsFromObj } from '@hft/utils';
 import * as nodeForge from 'node-forge';
 
@@ -10,7 +10,7 @@ export class SignGenerator {
             endpoint,
             query,
             body,
-        }: KuReq[0]['forSignature'] & { endpoint: Endpoint },
+        }: KuReq['forSignature'],
         keys: Record<KuEnvKeys, string> | NodeJS.ProcessEnv,
     ) {
         const {
