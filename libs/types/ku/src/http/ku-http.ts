@@ -1,9 +1,54 @@
-import { CurrencyPair } from '../core';
+import { CurrencyPair, CurrencyType } from '../core';
 import { KuHeaders } from './ku-headers';
 
 type URL = 'https://api.kucoin.com';
 
 export type KuHttp = {
+  '/api/v1/accounts/ledgers': {
+    url: `${URL}/api/v1/accounts/ledgers`;
+    req: {
+      method: 'GET';
+      query: {
+        /**
+         * @description
+         *
+         * honestly it is possible to send "CurrencyType,CurrencyType..."
+         * but for simplicity declare only single
+         */
+        currency?: CurrencyType;
+        direction?: 'in' | 'out';
+        bizType?:
+          | 'DEPOSIT'
+          | 'WITHDRAW'
+          | 'TRANSFER'
+          | 'SUB_TRANSFER'
+          | 'TRADE_EXCHANGE'
+          | 'MARGIN_EXCHANGE'
+          | 'KUCOIN_BONUS';
+        startAt?: number;
+        endAt?: number;
+      };
+      body?: never;
+      headers: KuHeaders;
+    };
+    res: {
+      code: '200000';
+      data: {
+        id: string;
+        currency: CurrencyType;
+        amount: string;
+        fee: string; //	Fees generated in transaction, withdrawal, etc.
+        balance: string; //	Remaining funds after the transaction.
+        accountType: 'MAIN' | 'TRADE' | 'MARGIN' | 'CONTRACT';
+        bizType: string; //	Business type leading to the changes in funds, such as exchange, withdrawal, deposit, KUCOIN_BONUS, REFERRAL_BONUS, Lendings etc.
+        direction: 'out';
+        in;
+        createdAt: number; // Time of the event
+        context: string; // TODO => JSON-string ???
+      };
+    };
+  };
+
   '/api/v1/bullet-public': {
     url: `${URL}/api/v1/bullet-public`;
     req: {
