@@ -12,7 +12,7 @@ export class ConnectionManager {
 
   async connect() {
     const { endpoint, token, pingTimeout, pingInterval } =
-      await this.http.POST_apply_private_connect_token();
+      await this.http.POST.apply_private_connect_token();
 
     if (this.ws) {
       await this.disconnect();
