@@ -12,6 +12,28 @@ export class V2HftProvider extends HttpProvider {
 
   /**
    * @description
+   * [link](https://docs.kucoin.com/spot-hf/?python#list-high-frequency-trading-accounts)
+   */
+  public async hft_accounts(data: KuReq<'/api/v1/accounts'>['query']) {
+    const { url, forSignature, method, query }: KuReq<'/api/v1/accounts'> = {
+      url: 'https://api.kucoin.com/api/v1/accounts',
+      method: 'GET',
+      query: data,
+      forSignature: {
+        endpoint: '/api/v1/accounts',
+        method: 'GET',
+        query: data,
+      },
+    };
+    const headers = this.signGenerator.generateHeaders(forSignature, this.keys);
+
+    return this.http(url, { method, query, headers }).then(
+      ({ body }) => body.json() as Promise<KuRes<'/api/v1/accounts'>>
+    );
+  }
+
+  /**
+   * @description
    * [link](https://docs.kucoin.com/spot-hf/#internal-funds-transfers-in-high-frequency-trading-accounts)
    */
   public async inner_transfer(

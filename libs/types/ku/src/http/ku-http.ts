@@ -5,6 +5,29 @@ type URL = 'https://api.kucoin.com';
 type AccountType = 'main' | 'trade' | 'trade_hf';
 
 export type KuHttp = {
+  '/api/v1/accounts': {
+    url: `${URL}/api/v1/accounts`;
+    req: {
+      headers: KuHeaders;
+      query: {
+        currency: CurrencyType; // String	No	currency
+        type: AccountType; //	String	No	Account type, trade_hf(high-frequency trading account)
+      };
+      method: 'GET';
+      body?: never;
+    };
+    res: {
+      code: '20000';
+      data: {
+        id: string; //	accountId
+        currency: CurrencyType; //	The currency the account is associated with
+        type: AccountType; // trade_hf(high-frequency trading account)
+        balance: string; //	Total funds
+        available: string; //	Available funds
+        holds: string; //	Funds frozen
+      }[];
+    };
+  };
   '/api/v2/accounts/inner-transfer': {
     url: `${URL}/api/v2/accounts/inner-transfer`;
     req: {
@@ -22,10 +45,10 @@ export type KuHttp = {
       query?: never;
     };
     res: {
-      code: '20000',
+      code: '20000';
       data: {
         orderId: string;
-      },
+      };
     };
   };
   '/api/v1/sub-accounts': {
