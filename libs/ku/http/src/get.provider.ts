@@ -10,6 +10,23 @@ export class GetProvider extends HttpProvider {
     super(configService);
   }
 
+  public async aggregated_balance_of_all_sub_accounts() {
+    const { forSignature, method, query, url }: KuReq<'/api/v1/sub-accounts'> =
+      {
+        url: 'https://api.kucoin.com/api/v1/sub-accounts',
+        forSignature: {
+          endpoint: '/api/v1/sub-accounts',
+          method: 'GET',
+        },
+        method: 'GET',
+      };
+    const headers = this.signGenerator.generateHeaders(forSignature, this.keys);
+
+    return this.http(url, { method, query, headers }).then(
+      ({ body }) => body.json() as Promise<KuRes<'/api/v1/sub-accounts'>>
+    );
+  }
+
   public async account_ledgers() {
     const {
       forSignature,

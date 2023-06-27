@@ -4,6 +4,29 @@ import { KuHeaders } from './ku-headers';
 type URL = 'https://api.kucoin.com';
 
 export type KuHttp = {
+  '/api/v1/sub-accounts': {
+    url: `${URL}/api/v1/sub-accounts`;
+    req: {
+      method: 'GET';
+      query?: never;
+      body?: never;
+      headers: KuHeaders;
+    };
+    res: {
+      code: '2000';
+      data: {
+        subUserId: string; //	The user ID of the sub-user.
+        subName: string; //	The username of the sub-user.
+        currency: CurrencyType; //	The currency of the account.
+        balance: string; //	Total funds in the account.
+        available: string; //	Funds available to withdraw or trade.
+        holds: string; //	Funds on hold (not available for use).
+        baseCurrency: CurrencyType; //	Calculated on this currency.
+        baseCurrencyPrice: string; //	The base currency price.
+        baseAmount: string; //	The base currency amount.
+      }[];
+    };
+  };
   '/api/v1/accounts/ledgers': {
     url: `${URL}/api/v1/accounts/ledgers`;
     req: {
