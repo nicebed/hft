@@ -7,11 +7,16 @@
   * Under the hood it contains separate more concrete manager for each subscription type:
     * [`Level2_subscription_manager`](./src/lib/level2.subscription-manager.ts)
       > Provide control over the /level2/ channel (orderBook)
+    * [`AccountBalance_subscription_manager](./src/lib/account-balance.subscription-manager.ts)
+      > Inform in real time about any changes in wallet
 * [`MessageHandler`](./src/lib/message-handler.ts)
   1. Client explicitly API:
      > Provide functionality by adding or removing callbacks for special events
   2. NonClient, auto, implicitly API:
     > Under the hood this class contains methods that dynamically are called by received messages
+
+    > ### Important (tips)!
+    >  * `.ack()` should return `boolean` like `message.id is my => true else => false`
 * [`KuWsModule`](./src/lib/ku-ws.module.ts)
   > Standard Nest.js module
 
