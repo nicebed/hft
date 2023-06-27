@@ -42,16 +42,29 @@ export class ConnectionManager {
             message.toString()
           ) as KuWs[Channel]['SUB']['PAYLOAD'];
 
-          console.log(jMessage);
-
-          // ts is not genius... so
-          if (jMessage.subject === 'trade.l2update') {
-            // tak nado
-            messageHandler['trade.l2update'](jMessage);
-          } else if (jMessage.subject === 'account.balance') {
-            // i tak nado(
-            messageHandler['account.balance'](jMessage);
-          }
+          /**
+           * @description
+           *
+           * _Unfortunately typescript is misunderstand current moment that's why "any"..._
+           *
+           * ### So what is going on?
+           *
+           * All "business" messages contains "subject" property and by its value
+           * the corresponding handler will receive this message.
+           * But "technical" messages has not one (ack, ping, pong, welcome (but it should not appear here))...
+           * that's why
+           *
+           * ```ts
+           *   message.subject // undefined
+           * ```
+           *
+           * And the tricky is that we already has messageHandler['undefined'] // NoSubjectHandler
+           *
+           * So we (but not typescript) sure that each subject (event no-subject) will
+           * sended to its handler.
+           */
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          messageHandler[jMessage.subject](jMessage as any);
         });
 
         resolve(subscriptionManager);
@@ -65,7 +78,6 @@ export class ConnectionManager {
       return new Promise((resolve, reject) => {
         this.ws!.once('error', reject);
         this.ws!.on('close', resolve);
-
         this.ws!.close();
       });
     }
