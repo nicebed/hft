@@ -3,12 +3,18 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { HttpProvider } from './ku-http.provider';
 import { _Keys } from './types';
+import { V2HftProvider } from './v2-hft.provider';
 
 @Injectable()
 export class PostProvider extends HttpProvider {
-  constructor(protected configService: ConfigService<_Keys, true>) {
+  constructor(
+    protected configService: ConfigService<_Keys, true>,
+    public hftProvider: V2HftProvider
+  ) {
     super(configService);
   }
+
+  public HFT = this.hftProvider;
 
   public async apply_public_connect_token() {
     const { url, method }: KuReq<'/api/v1/bullet-public'> = {

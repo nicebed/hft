@@ -2,8 +2,32 @@ import { CurrencyPair, CurrencyType } from '../core';
 import { KuHeaders } from './ku-headers';
 
 type URL = 'https://api.kucoin.com';
+type AccountType = 'main' | 'trade' | 'trade_hf';
 
 export type KuHttp = {
+  '/api/v2/accounts/inner-transfer': {
+    url: `${URL}/api/v2/accounts/inner-transfer`;
+    req: {
+      method: 'POST';
+      headers: KuHeaders;
+      body: {
+        clientOid: string; // String	clientOid, the unique identifier created by the client, use of UUID, with a maximum length of 128 bits.
+        currency: CurrencyType;
+        from: AccountType; // Payment Account Type: main, trade, margin, or isolated
+        to: AccountType; // Receiving Account Type: main, trade, margin, isolated, or contract
+        amount: string; // Transfer amount, the precision being a positive integer multiple of the Currency Precision
+        fromTag?: CurrencyPair; // [Optional] Trading pair, required when the payment account type is isolated, e.g.: BTC-USDT
+        toTag?: CurrencyPair; // [Optional] Trading pair, required when the receiving account type is isolated, e.g.: BTC-USDT
+      };
+      query?: never;
+    };
+    res: {
+      code: '20000',
+      data: {
+        orderId: string;
+      },
+    };
+  };
   '/api/v1/sub-accounts': {
     url: `${URL}/api/v1/sub-accounts`;
     req: {
