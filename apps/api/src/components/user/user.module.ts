@@ -1,6 +1,12 @@
 import { User } from '@hft/db';
-import { UserDto } from '@hft/dto/api';
-import { NestjsQueryGraphQLModule } from '@nestjs-query/query-graphql';
+import {
+  CreateOneUserInputDto,
+  UpdateOneUserInputDto,
+  UserDto,
+} from '@hft/dto/api';
+import {
+  NestjsQueryGraphQLModule
+} from '@nestjs-query/query-graphql';
 import { NestjsQueryTypegooseModule } from '@nestjs-query/query-typegoose';
 import { Module } from '@nestjs/common';
 
@@ -12,6 +18,27 @@ import { Module } from '@nestjs/common';
         {
           DTOClass: UserDto,
           EntityClass: User,
+          CreateDTOClass: CreateOneUserInputDto,
+          UpdateDTOClass: UpdateOneUserInputDto,
+          enableAggregate: false,
+          aggregate: {
+            disabled: true,
+          },
+          create: {
+            many: {
+              disabled: true,
+            },
+          },
+          update: {
+            many: {
+              disabled: true,
+            },
+          },
+          delete: {
+            many: {
+              disabled: true,
+            },
+          },
         },
       ],
     }),
