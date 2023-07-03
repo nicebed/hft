@@ -4,8 +4,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "npx nx run-many --target=lint",
-    "__init-mongo": "docker run -d --name mongo mongo",
-    "__start-mongo": "docker start mongo"
+    "__mongo": "cd docker-root/mongo && docker compose up -d"
   },
   "private": true,
   "dependencies": {
