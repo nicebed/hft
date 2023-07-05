@@ -1,8 +1,7 @@
 import { BaseLayout } from '@app/app/layouts/base-layout';
 import { createBrowserRouter } from 'react-router-dom';
 
-import { ProtectedPages } from './guard-config';
-import AccessDenied from '@app/pages/access-denied';
+import { Pages } from './guard-config';
 
 export const appRouter = () =>
   createBrowserRouter([
@@ -10,16 +9,20 @@ export const appRouter = () =>
       element: BaseLayout,
       children: [
         {
+          path: '/auth/sign-up',
+          element: <Pages.Signup />,
+        },
+        {
           path: '/',
-          element: <ProtectedPages.Home />,
+          element: <Pages.Home />,
         },
         {
           path: '/settings',
-          element: <ProtectedPages.Settings />,
+          element: <Pages.Settings />,
         },
         {
           path: '/access-denied',
-          element: <AccessDenied />,
+          element: <Pages.AccessDenied />,
         },
       ],
     },

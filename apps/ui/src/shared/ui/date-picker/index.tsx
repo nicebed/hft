@@ -1,6 +1,7 @@
-import dayjs from 'dayjs';
 import { Controller, useFormContext } from 'react-hook-form';
-import { DatePicker as MuiDatePicker } from '@mui/x-date-pickers';
+import { DatePicker as AntdDatePicker } from 'antd';
+import { Label } from '../input';
+import dayjs from 'dayjs';
 
 interface Props {
   name: string;
@@ -8,17 +9,29 @@ interface Props {
 }
 
 export const DatePicker = ({ name, label }: Props) => {
-  const { control } = useFormContext();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
+  const error = errors[name]?.message as string | undefined;
 
   return (
     <Controller
       name={name}
       control={control}
       render={({ field: { onChange } }) => (
-        <MuiDatePicker
-          label={label}
-          onChange={(event) => onChange(dayjs((event as any).$d).format('DD-MM-YYYY-Z'))}
-        />
+        <main className='flex flex-col gap-1 items-start'>
+          <Label
+            label={label}
+            error={error}
+          />
+          <AntdDatePicker
+            format='MM-DD-YYYY'
+            onChange={(event) => onChange(dayjs((event as any).$d).format('DD-MM-YYYY-Z'))}
+            className='w-full'
+            size='large'
+          />
+        </main>
       )}
     />
   );

@@ -4,8 +4,9 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { SubmitError } from './submit-error';
 import { FormProps } from './types';
 import { ForwardedRef, forwardRef } from 'react';
-import { Button, CircularProgress } from '@mui/joy';
+
 import clsx from 'clsx';
+import { Button, Spin } from 'antd';
 
 export const Form = forwardRef(FormElement) as <S extends ZodType<any, any>>(
   props: FormProps<S> & { ref?: ForwardedRef<HTMLFormElement> }
@@ -39,7 +40,7 @@ function FormElement<S extends ZodType<any, any>>(
       <form
         ref={ref}
         onSubmit={handleSubmit}
-        className={clsx(className, 'flex flex-col gap-5')}
+        className={clsx(className, 'flex flex-col gap-3')}
         {...props}
       >
         {children}
@@ -47,19 +48,12 @@ function FormElement<S extends ZodType<any, any>>(
         {submitText ? (
           <div className='flex flex-col items-center'>
             <Button
-              className='w-full'
-              variant='soft'
-              type='submit'
-              // disabled={isLoading}
+              htmlType='submit'
+              type='primary'
+              className='mt-[14px] w-full'
+              size='large'
             >
-              {isLoading ? (
-                <CircularProgress
-                  variant='soft'
-                  size='sm'
-                />
-              ) : (
-                submitText
-              )}
+              {isLoading ? <Spin size='small' /> : submitText}
             </Button>
 
             <SubmitError message={errorMessage} />

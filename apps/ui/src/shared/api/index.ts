@@ -1,5 +1,3 @@
-export * from './base-api';
-
 export * from './types';
 
-export * from './config';
+export { apolloClient } from './apollo.service';
