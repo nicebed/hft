@@ -11,7 +11,7 @@ interface Props {
   type?: 'text' | 'password' | 'email' | 'number';
 }
 
-export const Input = forwardRef<HTMLInputElement, Props>(({ name, disabled, ...props }) => {
+export const Input = forwardRef<HTMLInputElement, Props>(({ name, disabled, ...props }, _ref) => {
   const {
     register,
     formState: { isSubmitting, errors },
