@@ -26,6 +26,7 @@ export const DatePicker = ({ name, label }: Props) => {
             error={error}
           />
           <AntdDatePicker
+            status={error ? 'error' : undefined}
             format='MM-DD-YYYY'
             onChange={(event) => onChange(dayjs((event as any).$d).format('DD-MM-YYYY-Z'))}
             className='w-full'

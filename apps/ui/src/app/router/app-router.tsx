@@ -1,24 +1,25 @@
-import { BaseLayout } from '@app/app/layouts/base-layout';
 import { createBrowserRouter } from 'react-router-dom';
-
 import { Pages } from './guard-config';
+import Layout from '@app/shared/ui/layout';
 
 export const appRouter = () =>
   createBrowserRouter([
     {
-      element: BaseLayout,
+      element: <Layout />,
       children: [
-        {
-          path: '/auth/sign-up',
-          element: <Pages.Signup />,
-        },
         {
           path: '/',
           element: <Pages.Home />,
         },
         {
-          path: '/settings',
-          element: <Pages.Settings />,
+          path: '/news',
+          element: <Pages.News />,
+        },
+
+        // AUTH
+        {
+          path: '/auth/sign-in',
+          element: <Pages.SignIn />,
         },
         {
           path: '/access-denied',

@@ -1,11 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+
+*,
+::before,
+::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: theme('borderColor.DEFAULT', currentColor); /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body  {
-  font-family: 'Public Sans', sans-serif;  
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   scroll-behavior: smooth;
 }
@@ -30,7 +45,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: blue;
+  background-color: rgba(0, 0, 255, 0.622);
   border-radius: 20px;
 }
 
@@ -52,20 +67,13 @@ body {
   touch-action: manipulation;
 }
 
-body,
-h1,
-h2,
-h3,
-h4 {
-  margin: 0;
-}
-
 body {
   min-height: 100vh;
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   overflow-anchor: none;
+  margin: 0;
 }
 
 ul[class],

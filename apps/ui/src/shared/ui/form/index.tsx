@@ -7,6 +7,7 @@ import { ForwardedRef, forwardRef } from 'react';
 
 import clsx from 'clsx';
 import { Button, Spin } from 'antd';
+import { Loader } from '../loader';
 
 export const Form = forwardRef(FormElement) as <S extends ZodType<any, any>>(
   props: FormProps<S> & { ref?: ForwardedRef<HTMLFormElement> }
@@ -53,7 +54,14 @@ function FormElement<S extends ZodType<any, any>>(
               className='mt-[14px] w-full'
               size='large'
             >
-              {isLoading ? <Spin size='small' /> : submitText}
+              {isLoading ? (
+                <Loader
+                  color='white'
+                  size='sm'
+                />
+              ) : (
+                submitText
+              )}
             </Button>
 
             <SubmitError message={errorMessage} />

@@ -14,7 +14,7 @@ export const SignupForm = () => {
       schema={SignupSchema}
       onSubmit={signup}
       submitText='Sign Up'
-      className='w-[95%] sm:w-[63%] md:w-[53%] lg:w-[43%] xl:w-[32%] 2xl:w-[22%]'
+      className='w-full'
     >
       <Input
         name='nickname'
@@ -39,6 +39,7 @@ export const SignupForm = () => {
         name='confirmPassword'
         label='Confirm password'
         type='password'
+        placeholder='Confirm your password'
       />
     </Form>
   );

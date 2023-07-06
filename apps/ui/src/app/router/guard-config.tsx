@@ -2,14 +2,14 @@ import AccessDenied from '@app/pages/access-denied';
 import { withGuard } from './with-guard';
 
 import Home from '@app/pages/home';
-import Settings from '@app/pages/settings';
-import Signup from '@app/pages/auth/sign-up';
+import SignIn from '@app/pages/auth/sign-in';
+import News from '@app/pages/news';
 
 export const Pages = {
-  Home: withGuard(Home, ['USER']),
-  Settings: withGuard(Settings, ['CLIENT']),
+  Home,
+  News,
 
   // Auth
-  Signup,
+  SignIn,
   AccessDenied,
 };
