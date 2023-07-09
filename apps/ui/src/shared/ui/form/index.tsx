@@ -6,7 +6,7 @@ import { FormProps } from './types';
 import { ForwardedRef, forwardRef } from 'react';
 
 import clsx from 'clsx';
-import { Button, Spin } from 'antd';
+import { Button } from 'antd';
 import { Loader } from '../loader';
 
 export const Form = forwardRef(FormElement) as <S extends ZodType<any, any>>(

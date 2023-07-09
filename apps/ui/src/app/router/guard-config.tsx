@@ -1,5 +1,5 @@
 import AccessDenied from '@app/pages/access-denied';
-import { withGuard } from './with-guard';
+// import { withGuard } from './with-guard';
 
 import Home from '@app/pages/home';
 import SignIn from '@app/pages/auth/sign-in';

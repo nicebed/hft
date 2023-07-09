@@ -1,5 +1,5 @@
 import { Form } from '@app/shared/ui/form';
-import { LoginSchema } from '../model/schemas';
+import { LoginSchema } from '../model/types/schemas';
 import { z } from 'zod';
 import { Input } from '@app/shared/ui/input';
 

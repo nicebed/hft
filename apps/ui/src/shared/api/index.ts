@@ -1,3 +1,3 @@
 export * from './types';
 
-export { apolloClient } from './apollo.service';
+export { apolloClient } from './gql-client';

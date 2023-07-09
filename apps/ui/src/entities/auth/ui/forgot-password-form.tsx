@@ -1,5 +1,5 @@
 import { Form } from '@app/shared/ui/form';
-import { ForgotPasswordSchema } from '../model/schemas';
+import { ForgotPasswordSchema } from '../model/types/schemas';
 import { Input } from '@app/shared/ui/input';
 import { z } from 'zod';
 import { Typography } from 'antd';

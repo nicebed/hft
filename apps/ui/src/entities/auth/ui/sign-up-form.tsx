@@ -1,5 +1,5 @@
 import { Form } from '@app/shared/ui/form';
-import { SignupSchema } from '../model/schemas';
+import { SignupSchema } from '../model/types/schemas';
 import { z } from 'zod';
 import { Input } from '@app/shared/ui/input';
 import { DatePicker } from '@app/shared/ui/date-picker';
