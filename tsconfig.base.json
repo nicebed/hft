@@ -15,8 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@hft/db": ["libs/db/src/index.ts"],
-      "@hft/dto/api": ["libs/dto/api/src/index.ts"],
       "@hft/ku/http": ["libs/ku/http/src/index.ts"],
       "@hft/ku/ws": ["libs/ku/ws/src/index.ts"],
       "@hft/types/ku": ["libs/types/ku/src/index.ts"],
