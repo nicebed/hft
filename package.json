@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "npx nx run-many --target=lint",
-    "__mongo": "cd docker-root/mongo && docker compose up -d"
+    "__mongo": "cd docker-root/mongo && docker compose up -d",
+    "gql": "npx ts-node -r tsconfig-paths/register -P ./apps/api/tsconfig.app.json  ./apps/api/src/gql.api.ts"
   },
   "private": true,
   "dependencies": {
