@@ -1,9 +1,17 @@
 <svg width="0" height="0" class="hidden">
+  <symbol version="1.0" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 2048.000000 2048.000000" id="telegram">
+    <g transform="translate(0.000000,2048.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+      <path d="M5830 1004 c1207 -578 2502 -908 3860 -984 247 -14 859 -14 1095 -1
+      1360 79 2591 388 3806 956 90 42 166 79 168 81 2 2 -2032 4 -4520 3 l-4524 0
+      115 -55z"></path>
+    </g>
+  </symbol>
+
   <svg id="burger" xmlns="http://www.w3.org/2000/svg"  fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
     <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
   </svg>
 
-    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" id="back" viewBox="0 0 16 16">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" id="back" viewBox="0 0 16 16">
     <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
   </svg>
 

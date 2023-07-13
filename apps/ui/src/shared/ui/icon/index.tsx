@@ -1,12 +1,13 @@
+import { IconName } from '@app/shared/types';
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<SVGSVGElement>, SVGSVGElement> {
-  name: string;
+  name: IconName;
   section?: string;
 }
 
 export const Icon = (props: Props) => {
-  const { name, section = 'icons', ...other } = props;
+  const { name, section = 'primary', ...other } = props;
 
   return (
     <svg
