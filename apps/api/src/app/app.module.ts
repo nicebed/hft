@@ -1,7 +1,10 @@
-import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { GQL_REDIS } from '@hft/types/gql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+import { RedisPubSub } from 'graphql-redis-subscriptions';
+import { Redis } from 'ioredis';
+
 @Module({
   imports: [
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
@@ -11,11 +14,27 @@ import { GraphQLModule } from '@nestjs/graphql';
           subscriptions: {
             'graphql-ws': true,
           },
-          playground: false,
-          ...(process.env.NODE_ENV !== 'production' && { plugins: [ApolloServerPluginLandingPageLocalDefault()] }),
+          typePaths: ['./**/*.gql'],
+          playground: true,
         };
       },
     }),
+  ],
+  providers: [
+    {
+      provide: GQL_REDIS,
+      useFactory() {
+        const options = {
+          host: 'localhost',
+          port: 6379,
+        };
+
+        return new RedisPubSub({
+          publisher: new Redis(options),
+          subscriber: new Redis(options),
+        });
+      },
+    },
   ],
 })
 export class AppModule {}
