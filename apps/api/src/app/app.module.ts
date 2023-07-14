@@ -1,7 +1,10 @@
 import { RootQueryResolver } from '@hft/resolvers';
+import { GQL_REDIS } from '@hft/types/gql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+import { RedisPubSub } from 'graphql-redis-subscriptions';
+import { Redis } from 'ioredis';
 
 @Module({
   imports: [
@@ -18,6 +21,22 @@ import { GraphQLModule } from '@nestjs/graphql';
       },
     }),
   ],
-  providers: [RootQueryResolver],
+  providers: [
+    {
+      provide: GQL_REDIS,
+      useFactory() {
+        const options = {
+          host: 'localhost',
+          port: 6379,
+        };
+
+        return new RedisPubSub({
+          publisher: new Redis(options),
+          subscriber: new Redis(options),
+        });
+      },
+    },
+    RootQueryResolver,
+  ],
 })
 export class AppModule {}
