@@ -1,1 +1,1 @@
-export * from './lib/resolvers.module';
+export { RootQueryResolver } from './root-query.resolver';

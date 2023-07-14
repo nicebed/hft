@@ -9,7 +9,7 @@
 /* eslint-disable */
 
 export interface IQuery {
-    whoAmI(): Nullable<string> | Promise<Nullable<string>>;
+    random(): number | Promise<number>;
 }
 
 type Nullable<T> = T | null;
