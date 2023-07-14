@@ -1,7 +1,8 @@
-import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { RootQueryResolver } from '@hft/resolvers';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
+
 @Module({
   imports: [
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
@@ -11,11 +12,12 @@ import { GraphQLModule } from '@nestjs/graphql';
           subscriptions: {
             'graphql-ws': true,
           },
-          playground: false,
-          ...(process.env.NODE_ENV !== 'production' && { plugins: [ApolloServerPluginLandingPageLocalDefault()] }),
+          typePaths: ['./**/*.gql'],
+          playground: true,
         };
       },
     }),
   ],
+  providers: [RootQueryResolver],
 })
 export class AppModule {}
