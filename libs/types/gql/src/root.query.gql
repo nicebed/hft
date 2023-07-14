@@ -1,3 +1,3 @@
 type Query {
-  random: Float!
+  who_am_I: String
 }

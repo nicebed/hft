@@ -1,4 +1,3 @@
-import { RootQueryResolver } from '@hft/resolvers';
 import { GQL_REDIS } from '@hft/types/gql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
@@ -36,7 +35,6 @@ import { Redis } from 'ioredis';
         });
       },
     },
-    RootQueryResolver,
   ],
 })
 export class AppModule {}
