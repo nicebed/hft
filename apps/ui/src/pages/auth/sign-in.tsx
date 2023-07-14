@@ -6,7 +6,7 @@ const options = [
   { value: Messenger.TELEGRAM, icon: 'telegram' },
   {
     value: Messenger.WHATSAPP,
-    icon: 'whatsApp',
+    icon: 'whatsapp',
   },
 ] satisfies RadioOptions;
 
@@ -17,7 +17,7 @@ export default function SignIn() {
     <main className='flex flex-col w-full items-center pt-12 space-y-2'>
       <Radio
         options={options}
-        defaultChecked='TELEGRAM'
+        // defaultChecked='TELEGRAM'
         onChange={handleNone}
       />
     </main>

@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import { Icon } from '../icon';
 import { OptionValue, Props, RadioOptions } from './types';
+import { Button as AntdBUtton } from 'antd';
 
 export const Radio = <O extends RadioOptions>({
   options,
@@ -10,7 +11,7 @@ export const Radio = <O extends RadioOptions>({
   defaultChecked,
   className,
 }: Props<O>) => {
-  const [selected, setSelected] = useState<OptionValue>(defaultChecked);
+  const [selected, setSelected] = useState<OptionValue | undefined>(defaultChecked);
 
   const handleOptionClick = (value: string) => {
     console.log(value);
@@ -22,6 +23,7 @@ export const Radio = <O extends RadioOptions>({
     <Button
       value={item.value}
       icon={item.icon}
+      selected={selected === item.value}
       onClick={handleOptionClick}
     />
   ));
@@ -36,18 +38,28 @@ export const Radio = <O extends RadioOptions>({
 const Button = ({
   value,
   icon,
+  selected,
   onClick,
 }: {
   value: string;
   icon: IconName;
+  selected: boolean;
   onClick: (value: string) => void;
 }) => {
+  console.log(selected);
   return (
-    <button onClick={() => onClick(value)}>
-      <Icon
+    <AntdBUtton
+      className={clsx(
+        'bg-gray-100/20 flex items-center justify-center p-4 w-10 h-10',
+        selected && 'bg-blue-100'
+      )}
+      // type='text'
+      onClick={() => onClick(value)}
+    >
+      {/* <Icon
         name={icon}
-        className='w-5 h-5'
-      />
-    </button>
+        className='w-8 h-8 bg-transparent'
+      /> */}
+    </AntdBUtton>
   );
 };
