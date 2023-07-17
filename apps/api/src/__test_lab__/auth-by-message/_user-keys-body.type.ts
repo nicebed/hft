@@ -1,5 +1,3 @@
-export type _UserKeys = {
-  phone: number,
-  communicationProvider: string,
-  simSim: string, 
-}
+import { ISubscription } from './_all.gql';
+
+export type _UserKeys = Awaited<ReturnType<ISubscription['login']>>;

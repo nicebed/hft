@@ -1,0 +1,14 @@
+input LoginInput {
+  phone: Int!
+  communicationProvider: String!
+}
+
+interface LoginRes {
+  phone: Int!
+  simSim: String!
+  communicationProvider: String!
+}
+
+type Subscription {
+  login(loginData: LoginInput): LoginRes! 
+}
