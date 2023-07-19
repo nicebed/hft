@@ -1,9 +1,10 @@
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { Module } from '@nestjs/common';
+import { Controller, Get, Module } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { Args, GraphQLModule, Resolver, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
 import { join } from 'path';
+import { LoginRes } from './_all.gql';
 import { _TestConfig } from './_test-config.provider';
 import { _UserKeys } from './_user-keys-body.type';
 
@@ -19,26 +20,34 @@ export async function _bootPseudoBackend() {
   }
 }
 
+const defaultPubSub = new PubSub();
+@Controller()
+class _PseudoController {
+  pubSub = defaultPubSub;
+
+  @Get('authByMessage0')
+  async sendData() {
+    this.pubSub.publish('login', {
+      login: { communicationProvider: 'ok', phone: 123, simSim: 'asdfasdf' } satisfies LoginRes & any,
+    });
+  }
+}
+
 @Resolver()
 class _PseudoResolver {
-  pubSub = new PubSub();
+  pubSub = defaultPubSub;
 
   @Subscription('login')
   async login(@Args() args: _UserKeys) {
     const iterator = this.pubSub.asyncIterator('login');
 
-    console.log(args);
-
-    try {
-      return iterator;
-    } finally {
-      await this.pubSub.publish('login', args);
-    }
+    return iterator;
   }
 }
 
 @Module({
   providers: [_PseudoResolver],
+  controllers: [_PseudoController],
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
