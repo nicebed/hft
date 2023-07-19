@@ -1,46 +1,63 @@
-import { ApolloClient, HttpLink, InMemoryCache, split as apolloSplit, gql } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache, gql, split } from '@apollo/client';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { getMainDefinition } from '@apollo/client/utilities';
+import { INestApplication } from '@nestjs/common';
 import { createClient } from 'graphql-ws';
+import supertest from 'supertest';
+import { inspect } from 'util';
+import ws from 'ws';
 import { _bootPseudoBackend } from './_pseudo-backend.main';
 import { _TestConfig } from './_test-config.provider';
 
+// TODO update fix and mv to lib
+function log(...args: any[]) {
+  if (Array.isArray(args)) {
+    const label = args.shift();
+
+    console.info(`======================== ${label} ================`);
+    console.log(...args.map((a) => inspect(a, { colors: true, depth: 8 })));
+    console.info(`======================== ${label} ================`);
+  } else {
+    console.info('==================================================');
+    console.log(inspect(args, { colors: true, depth: 8 }));
+    console.info('==================================================');
+  }
+}
+
 describe(`Auth flow with some messenger. (gql-subscriptions)`, () => {
-  let closeApp: () => Promise<void>;
+  let app: INestApplication;
 
   beforeAll(async () => {
-    closeApp = await _bootPseudoBackend();
+    app = await _bootPseudoBackend();
   });
 
   afterAll(async () => {
-    closeApp && (await closeApp());
+    app && (await app.close());
   });
 
   it('should work | authByMessage0', (done) => {
     const test = async () => {
       expect('should').not.toBe('errors');
 
-      const uri = `http://${_TestConfig.app.host}:${_TestConfig.app.port}/graphql`;
-      const apolloHttpLink = new HttpLink({
-        uri,
-      });
-      console.log(uri.replace(/^https?/, 'ws'));
-      const apolloWsLink = new GraphQLWsLink(
-        createClient({
-          url: uri.replace(/^https?/, 'ws'),
-        })
-      );
-      const apolloSplitLink = apolloSplit(
-        ({ query }) => {
-          const definition = getMainDefinition(query);
-          console.log(definition);
-          return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
-        },
-        apolloWsLink,
-        apolloHttpLink
-      );
+      const httpUrl = `http://${_TestConfig.app.host}:${_TestConfig.app.port}/graphql`;
+      const wsUrl = httpUrl.replace(/^https?/, 'ws');
       const apolloClient = new ApolloClient({
-        link: apolloSplitLink,
+        link: split(
+          ({ query }) => {
+            const definition = getMainDefinition(query);
+
+            return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
+          },
+          new GraphQLWsLink(
+            createClient({
+              webSocketImpl: ws,
+              url: wsUrl,
+            })
+          ),
+          new HttpLink({
+            uri: httpUrl,
+          })
+        ),
         cache: new InMemoryCache(),
         headers: {
           'content-type': 'application/json',
@@ -57,25 +74,19 @@ describe(`Auth flow with some messenger. (gql-subscriptions)`, () => {
       });
 
       subscription.subscribe({
-        error: console.warn,
-        complete: console.log.bind({}, 'complete'),
-        next: (value: any) => {
-          console.warn('==================== next ====================');
-          console.info(value);
-          console.warn('==================== next ====================');
+        error: (..._) => console.info('error', ..._),
+        complete: (..._) => log('complete', ..._),
+        next: (..._) => {
+          log('next', ..._);
+          done();
         },
-        start: (arg: any) => {
-          console.warn('==================== start =====================');
-          console.info(arg);
-          console.warn('==================== start =====================');
-        },
+        start: (..._) => log('start', ..._),
       });
 
-      await new Promise((resolve) => setTimeout(resolve, 1_000 * 60 * 5));
-
-      done();
+      await new Promise((resolve) => setTimeout(resolve, 1_000));
+      await supertest(app.getHttpServer()).get('/authByMessage0').expect(200);
     };
 
     test();
-  }, 1_000_000);
+  });
 });

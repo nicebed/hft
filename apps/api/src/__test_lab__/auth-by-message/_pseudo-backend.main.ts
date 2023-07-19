@@ -14,7 +14,7 @@ export async function _bootPseudoBackend() {
 
     await app.listen(_TestConfig.app.port);
 
-    return app.close;
+    return app;
   } catch (err) {
     console.warn(err);
   }
@@ -26,7 +26,7 @@ class _PseudoController {
   pubSub = defaultPubSub;
 
   @Get('authByMessage0')
-  async sendData() {
+  sendData() {
     this.pubSub.publish('login', {
       login: { communicationProvider: 'ok', phone: 123, simSim: 'asdfasdf' } satisfies LoginRes & any,
     });
