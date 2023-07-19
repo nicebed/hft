@@ -9,7 +9,7 @@ export interface Props<O extends RadioOptions> {
 
 export type RadioOptions = Array<OptionObject>;
 
-type OptionObject = { value: OptionValue; icon: IconName };
+type OptionObject = { value: OptionValue; icon: IconName; iconSection: string };
 
 export type OptionValue = string;
 

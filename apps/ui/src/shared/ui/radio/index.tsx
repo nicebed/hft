@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import { Icon } from '../icon';
 import { OptionValue, Props, RadioOptions } from './types';
-import { Button as AntdBUtton } from 'antd';
+import { Button as AntdButton } from 'antd';
 
 export const Radio = <O extends RadioOptions>({
   options,
@@ -14,7 +14,6 @@ export const Radio = <O extends RadioOptions>({
   const [selected, setSelected] = useState<OptionValue | undefined>(defaultChecked);
 
   const handleOptionClick = (value: string) => {
-    console.log(value);
     setSelected(value);
     onChange(value);
   };
@@ -23,13 +22,19 @@ export const Radio = <O extends RadioOptions>({
     <Button
       value={item.value}
       icon={item.icon}
+      iconSection={item.iconSection}
       selected={selected === item.value}
       onClick={handleOptionClick}
     />
   ));
 
   return (
-    <main className={clsx('w-full flex flex-row items-center justify-center flex-wrap', className)}>
+    <main
+      className={clsx(
+        'w-full flex flex-row items-center justify-center flex-wrap gap-3',
+        className
+      )}
+    >
       {optionsList}
     </main>
   );
@@ -38,28 +43,30 @@ export const Radio = <O extends RadioOptions>({
 const Button = ({
   value,
   icon,
+  iconSection,
   selected,
   onClick,
 }: {
   value: string;
   icon: IconName;
+  iconSection: string;
   selected: boolean;
   onClick: (value: string) => void;
 }) => {
-  console.log(selected);
   return (
-    <AntdBUtton
+    <AntdButton
       className={clsx(
-        'bg-gray-100/20 flex items-center justify-center p-4 w-10 h-10',
-        selected && 'bg-blue-100'
+        'flex items-center justify-center py-7 px-6',
+        selected ? 'bg-blue-100/60' : 'bg-gray-50/00'
       )}
-      // type='text'
+      type='dashed'
       onClick={() => onClick(value)}
     >
-      {/* <Icon
+      <Icon
         name={icon}
-        className='w-8 h-8 bg-transparent'
-      /> */}
-    </AntdBUtton>
+        section={iconSection}
+        className='w-9 h-9'
+      />
+    </AntdButton>
   );
 };
