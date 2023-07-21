@@ -2,7 +2,7 @@ import { IconName } from '@app/shared/types';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { Icon } from '../icon';
-import { OptionValue, Props, RadioOptions } from './types';
+import { AvailableOptions, OptionValue, Props, RadioOptions } from './types';
 import { Button as AntdButton } from 'antd';
 import { nanoid } from '@reduxjs/toolkit';
 
@@ -16,7 +16,7 @@ export const Radio = <O extends RadioOptions>({
 
   const handleOptionClick = (value: string) => {
     setSelected(value);
-    onChange(value);
+    onChange(value as AvailableOptions<O>);
   };
 
   const optionsList = options.map((item) => (

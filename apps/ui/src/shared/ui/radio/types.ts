@@ -13,4 +13,4 @@ type OptionObject = { value: OptionValue; icon: IconName; iconSection: string };
 
 export type OptionValue = string;
 
-type AvailableOptions<T> = T extends { value: infer V; icon: IconName }[] ? V : never;
+export type AvailableOptions<T> = T extends { value: infer V; icon: IconName }[] ? V : never;

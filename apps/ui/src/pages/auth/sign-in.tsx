@@ -19,11 +19,17 @@ export default function SignIn() {
     setValue(value);
   };
 
+  const handleChangeCommunicationProvide = (
+    provider: (typeof Messenger)[keyof typeof Messenger]
+  ) => {
+    console.log(provider);
+  };
+
   return (
     <main className='flex flex-col w-full items-center pt-16 space-y-7'>
       <Radio
         options={options}
-        onChange={() => null}
+        onChange={handleChangeCommunicationProvide}
         // defaultChecked='TELEGRAM'
       />
 
