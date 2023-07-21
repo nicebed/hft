@@ -8,12 +8,12 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/ui',
 
   server: {
-    port: 4200,
+    port: 3000,
     host: 'localhost',
   },
 
   preview: {
-    port: 4300,
+    port: 3000,
     host: 'localhost',
   },
 
@@ -40,10 +40,7 @@ export default defineConfig({
     },
     environment: 'jsdom',
 
-    include: [
-      '__tests__/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
-      'src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}',
-    ],
+    include: ['**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     setupFiles: '__tests__/setup.js',
   },
 });
