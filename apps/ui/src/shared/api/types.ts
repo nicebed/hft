@@ -8,7 +8,7 @@ export interface ApiService {
 
 // -----------
 export type QueryParams<P, R> = {
-  query: TypedDocumentNode<Record<string, unknown>>;
+  query: GqlDocument;
 } & BaseClientOperationParams<P, R>;
 
 export type Query = <P extends BaseData, R extends ApiResponse>({
@@ -19,13 +19,15 @@ export type Query = <P extends BaseData, R extends ApiResponse>({
 
 // -----------
 export type MutateParams<P, R> = {
-  mutation: TypedDocumentNode<Record<string, unknown>>;
+  mutation: GqlDocument;
+  invalidate: GqlDocument[];
 } & BaseClientOperationParams<P, R>;
 
 export type Mutate = <P extends BaseData, R extends ApiResponse>({
   mutation,
   variables,
   dataMapper,
+  invalidate,
 }: MutateParams<P, R>) => Promise<SingleExecutionResult<R>>;
 
 // -----------
@@ -37,3 +39,5 @@ export type BaseClientOperationParams<P, R> = {
 export type BaseData = Record<string, unknown> | undefined;
 
 export type ApiResponse = object;
+
+type GqlDocument = TypedDocumentNode<Record<string, unknown>>;

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Icon } from '../icon';
 import { OptionValue, Props, RadioOptions } from './types';
 import { Button as AntdButton } from 'antd';
+import { nanoid } from '@reduxjs/toolkit';
 
 export const Radio = <O extends RadioOptions>({
   options,
@@ -20,6 +21,7 @@ export const Radio = <O extends RadioOptions>({
 
   const optionsList = options.map((item) => (
     <Button
+      key={nanoid()}
       value={item.value}
       icon={item.icon}
       iconSection={item.iconSection}

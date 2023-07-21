@@ -12,9 +12,9 @@ export const apiService: ApiService = {
       .catch((error) => error);
   },
 
-  mutate: async ({ mutation, variables, dataMapper }) => {
+  mutate: async ({ mutation, variables, dataMapper, invalidate }) => {
     return client
-      .mutate({ mutation, variables })
+      .mutate({ mutation, variables, refetchQueries: invalidate })
       .then((response) => ({
         ...response,
         data: response.data && dataMapper ? dataMapper(response.data) : response.data,

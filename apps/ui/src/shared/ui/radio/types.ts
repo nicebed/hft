@@ -2,7 +2,7 @@ import { IconName } from '@app/shared/types';
 
 export interface Props<O extends RadioOptions> {
   options: O;
-  onChange: (value: OptionValue) => void;
+  onChange: (value: AvailableOptions<O>) => void;
   defaultChecked?: AvailableOptions<O>;
   className?: string;
 }

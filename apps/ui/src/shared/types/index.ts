@@ -7,3 +7,33 @@ export const Role = {
 export type Role = (typeof Role)[keyof typeof Role];
 
 export type IconName = string;
+
+export type Country =
+  | 'united-kingdom'
+  | 'ukraine'
+  | 'france'
+  | 'argentina'
+  | 'australia'
+  | 'austria'
+  | 'belgium'
+  | 'brazil'
+  | 'canada'
+  | 'finland'
+  | 'hungary'
+  | 'ireland'
+  | 'italy'
+  | 'latvia'
+  | 'poland'
+  | 'scotland'
+  | 'sweden'
+  | 'taiwan'
+  | 'united-arab-emirates'
+  | 'germany'
+  | 'united-states-of-america';
+
+export type PhoneNumber = string;
+
+export type PhoneFormat = {
+  length: number;
+  format: string; // 'AAA-AAA-AAA' etc
+};
