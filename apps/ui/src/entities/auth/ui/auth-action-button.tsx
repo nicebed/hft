@@ -1,12 +1,19 @@
+import { useAppDispatch } from '@app/app/store/hooks';
 import { Icon } from '@app/shared/ui/icon';
+import { sidebarModel } from '@app/widgets/app-sidebar';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router';
 
 export const AuthActionButton = () => {
+  const dispatch = useAppDispatch();
+
   const session = false;
   const navigate = useNavigate();
 
-  const handleRedirectToSignIn = () => navigate('/auth/sign-in');
+  const handleRedirectToSignIn = () => {
+    dispatch(sidebarModel.actions.close());
+    navigate('/auth/sign-in');
+  };
   const handleLogout = () => 0; // TODO set effect
 
   if (!session) {
