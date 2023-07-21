@@ -32,8 +32,3 @@ export type Country =
   | 'united-states-of-america';
 
 export type PhoneNumber = string;
-
-export type PhoneFormat = {
-  length: number;
-  format: string; // 'AAA-AAA-AAA' etc
-};

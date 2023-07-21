@@ -1,6 +1,6 @@
 import { Country } from '../types';
 
-export const PHONE_COUNTRY_FORMATS: Record<Country, string> = {
+export const PHONE_NUMBER_FORMATS: Record<Country, string> = {
   poland: 'AAA-AAA-AAA',
   ukraine: 'AA AAA AA AA',
   'united-kingdom': 'AAAA AAAAA',

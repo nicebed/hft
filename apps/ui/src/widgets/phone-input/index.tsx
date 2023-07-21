@@ -1,4 +1,4 @@
-import { COUNTRY_PHONE_CODES } from '@app/shared/config/phone-codes';
+import { PHONE_NUMBER_CODES } from '@app/shared/config/phone-number-codes';
 import { formatPhoneNumber } from '@app/shared/lib/format-phone-number';
 import { Country, PhoneNumber } from '@app/shared/types';
 import { Input } from 'antd';
@@ -18,7 +18,7 @@ export const PhoneInput = ({ country, value, onChange, className }: Props) => {
 
   return (
     <Input
-      prefix={country ? <span>{COUNTRY_PHONE_CODES[country]}</span> : null}
+      prefix={country ? <span>{PHONE_NUMBER_CODES[country]}</span> : null}
       placeholder={country ? undefined : 'Please, specify your location'}
       size='large'
       allowClear

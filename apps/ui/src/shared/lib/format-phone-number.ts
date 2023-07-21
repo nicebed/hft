@@ -1,4 +1,4 @@
-import { PHONE_COUNTRY_FORMATS } from '../config/phone-country-formats';
+import { PHONE_NUMBER_FORMATS } from '../config/phone-number-formats';
 import { Country, PhoneNumber } from '../types';
 import { removeCharAt } from './remove-char-at';
 import { replaceCharAt } from './replace-char-at';
@@ -14,10 +14,10 @@ interface Params {
 export const formatPhoneNumber = ({ value, country }: Params) => {
   if (!value) return '';
 
-  const format = PHONE_COUNTRY_FORMATS[country];
+  const template = PHONE_NUMBER_FORMATS[country];
   const cleanedInput = ('' + value).replace(/\D/g, '');
 
-  let output = format;
+  let output = template;
 
   let originValueIndex = 0;
   for (let i = 0; i < output.length; ++i) {

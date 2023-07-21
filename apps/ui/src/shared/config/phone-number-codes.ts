@@ -1,6 +1,6 @@
 import { Country } from '../types';
 
-export const COUNTRY_PHONE_CODES: Record<Country, string> = {
+export const PHONE_NUMBER_CODES: Record<Country, string> = {
   'united-kingdom': '+44',
   ukraine: '+380',
   france: '+33',
