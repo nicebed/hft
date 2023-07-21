@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@hft/db": ["libs/db/src/index.ts"],
       "@hft/ku/http": ["libs/ku/http/src/index.ts"],
       "@hft/ku/ws": ["libs/ku/ws/src/index.ts"],
       "@hft/resolvers": ["libs/resolvers/src/index.ts"],

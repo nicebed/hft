@@ -15,7 +15,7 @@ import { Redis } from 'ioredis';
             'graphql-ws': true,
           },
           typePaths: ['./**/*.gql'],
-          playground: true,
+          playground: false,
         };
       },
     }),
