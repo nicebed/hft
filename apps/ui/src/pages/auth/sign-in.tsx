@@ -1,9 +1,9 @@
 import { Radio } from '@app/shared/ui/radio';
 import { RadioOptions } from '@app/shared/ui/radio/types';
-import { CountrySelector } from '@app/widgets/country-selector';
+import { CountrySelector } from '@app/widgets/country-selector/ui';
 import { CountrySelectorOptions } from '@app/widgets/country-selector/types';
 import { useState } from 'react';
-import { PhoneInput } from '@app/widgets/phone-input';
+import { PhoneInput } from '@app/widgets/phone-input/ui';
 import { type PhoneNumber, type Country } from '@app/shared/types';
 
 export default function SignIn() {

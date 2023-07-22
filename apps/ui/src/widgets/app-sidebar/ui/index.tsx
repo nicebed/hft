@@ -2,9 +2,9 @@ import { sidebarModel } from '..';
 import { useEffect, useRef } from 'react';
 import { cva } from 'class-variance-authority';
 import { useAppDispatch } from '@app/app/store/hooks';
-import { AppLogo } from '@app/widgets/logo';
 import { Menu } from './menu';
 import { AuthActionButton } from '@app/entities/auth';
+import { AppLogo } from './logo';
 
 export const AppSidebar = () => {
   const dispatch = useAppDispatch();

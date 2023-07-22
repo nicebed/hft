@@ -22,6 +22,7 @@ export const Toggle = () => {
         <span className='block w-8 h-0.5 rounded bg-gray-400'></span>
         <span className='block w-5 h-0.5 rounded bg-gray-400'></span>
       </button>
+
       <img
         src='/logo.png'
         alt='app-logo'

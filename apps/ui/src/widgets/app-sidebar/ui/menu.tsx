@@ -1,5 +1,5 @@
 import { Topic } from '@app/shared/ui/topic';
-import { MenuButton } from './navigation-button';
+import { MenuButton } from './menu-button';
 
 export const Menu = () => {
   return (

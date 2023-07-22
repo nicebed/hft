@@ -13,9 +13,10 @@ interface MenuButtonProps {
 }
 
 export const MenuButton = ({ path, label, icon }: MenuButtonProps) => {
+  const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
   const { pathname: currentPath } = useLocation();
-  const dispatch = useAppDispatch();
 
   const [isSelected, setIsSelected] = useState(isSelectedTopic(currentPath, path));
 

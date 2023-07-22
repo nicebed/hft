@@ -18,14 +18,14 @@ export const PhoneInput = ({ country, value, onChange, className }: Props) => {
 
   return (
     <Input
-      prefix={country ? <span>{PHONE_NUMBER_CODES[country]}</span> : null}
-      placeholder={country ? undefined : 'Please, specify your location'}
       size='large'
       allowClear
-      className={className}
       value={value ?? ''}
       disabled={!country}
+      className={className}
       onChange={({ target }) => handleChange(target.value)}
+      placeholder={country ? undefined : 'Please, specify your location'}
+      prefix={country ? <span>{PHONE_NUMBER_CODES[country]}</span> : null}
     />
   );
 };

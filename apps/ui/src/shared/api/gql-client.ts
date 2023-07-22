@@ -1,5 +1,5 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client';
-import { config } from '../config/config';
+import { config } from '../config/config.env';
 import Cookies from 'js-cookie';
 
 export const apolloClient = new ApolloClient({

@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { Select } from 'antd';
 import { Icon } from '@app/shared/ui/icon';
-import { CountrySelectorOptions } from './types';
+import { CountrySelectorOptions } from '../types';
 import { type Country } from '@app/shared/types';
 import { nanoid } from '@reduxjs/toolkit';
 
